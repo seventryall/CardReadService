@@ -1,0 +1,69 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>读取身份证号</title>
+<style type="text/css">
+.titlecenter {
+	text-align: center;
+}
+.lstSamples {
+	padding-top: 10px;
+	padding-right: 10%;
+	padding-bottom: 10px;
+	padding-left: 10%;
+}
+.maintext {
+	padding-right: 10%;
+	padding-left: 10%;
+}
+</style>
+    <script language="javascript" src="CardReader.js"></script>
+    <script language="javascript" type="text/javascript">
+        try {
+            var reader = CardReader.createNew();
+        }
+        catch (e) {
+            alert("创建读卡云服务连接失败，请先下载安装！");
+        }
+
+        if (!reader.tryConnect()) {
+            alert("浏览器不支持，请更换浏览器后重试！");
+        }
+
+
+
+        window.onunload = function () {
+            reader.disconnect();
+        }
+
+        function checkConnected() {
+            if (!reader.connected()) {
+                alert("连接读卡云服务失败，重新下载安装！");
+                return false;
+            }
+            return true;
+        }
+        function start()
+        {
+            reader.requestIDCardNo(); 
+        }
+    </script>
+</head>
+
+<body>
+	<p class="maintext">
+  <input type="submit" name="btnStart" id="btnStart" value="读卡号"  onclick="start()" />
+</p>
+<p class="maintext">身份证卡号：</p>
+<p class="maintext">
+  <label for="textCardNo"></label>
+  <textarea name="textCardNo" id="textCardNo" cols="45" rows="15"></textarea>
+</p>
+
+
+
+
+</body>
+</html>
