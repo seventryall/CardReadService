@@ -1,0 +1,2 @@
+# 读卡服务
+web页面基于websocket与windows服务实现读卡功能
